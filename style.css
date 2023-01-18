@@ -1,0 +1,63 @@
+.header{
+    background-color: #202020;
+    color:  rgba(255, 208, 0, 0.993);
+    height:74px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 120px;
+  letter-spacing: 3px;
+}
+
+.wroper{
+  background-color: rgba(255, 208, 0, 0.993);
+}
+
+.fv{
+    /* 画面の高さの90に指定 */
+    height:70vh;
+    /* 背景画像の設定 */
+    background-position: center;
+    /* メインコピーの上下左右中央寄せ */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .odai{
+    font-size:100px;
+    font-weight: bold;
+  }
+
+  .btn{
+    display: flex;
+    justify-content: center;
+    height: 22vh;
+
+}
+
+  .btn-list{
+justify-content: center;
+}
+
+  .btn-item{
+    color: #000;
+    background-color: #fff100;
+    border-bottom: 5px solid #6969692c;
+    width: 200px;
+    height: 50px;
+    font-weight: bold;
+    margin: 20px;
+    -webkit-box-shadow: 0 5px 0 #e6d900;
+  box-shadow: 0 5px 0 #e6d900;
+
+  }
+
+
+  .btn-item:hover {
+    -webkit-transform: translate(0, 5px);
+  transform: translate(0, 5px);
+  -webkit-box-shadow: 0 2px 0 #e6d900;
+  box-shadow: 0 10px 0 #e6d900;
+  }
