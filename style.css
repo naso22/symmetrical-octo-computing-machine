@@ -7,10 +7,14 @@
     align-items: center;
     padding: 0 120px;
   letter-spacing: 3px;
+  margin-top: 5px;
+  border-top-left-radius : 35px;
+  border-top-right-radius: 35px;
+  font-size: 80%;
 }
 
 .wroper{
-  background-color: rgba(255, 208, 0, 0.993);
+  background-color: rgb(255, 208, 0);
 }
 
 .fv{
@@ -28,12 +32,13 @@
   .odai{
     font-size:100px;
     font-weight: bold;
+    text-align: center;
   }
 
   .btn{
     display: flex;
     justify-content: center;
-    height: 22vh;
+    height: 21.5vh;
 
 }
 
@@ -60,4 +65,52 @@ justify-content: center;
   transform: translate(0, 5px);
   -webkit-box-shadow: 0 2px 0 #e6d900;
   box-shadow: 0 10px 0 #e6d900;
+  }
+
+  @media screen and (max-width:747px){
+    /* ----------------------- */
+    /* base_sp
+    /* ----------------------- */
+    .odai{
+      font-size:50px;
+      font-weight: bold;
+      text-align: center;  
+    }
+
+    .btn{
+      display: flex;
+      justify-content: center;
+      height: 21.5vh;
+      text-align: center;
+  
+  }
+  
+  
+    .btn-item{
+      color: #000;
+      background-color: #fff100;
+      border-bottom: 5px solid #6969692c;
+      width: 100px;
+      height: 50px;
+      font-weight: bold;
+      -webkit-box-shadow: 0 5px 0 #e6d900;
+    box-shadow: 0 5px 0 #e6d900;
+    margin: 0px;
+  
+    }
+
+    .header{
+      background-color: #202020;
+      color:  rgba(255, 208, 0, 0.993);
+      height:69px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0 120px;
+    letter-spacing: 3px;
+    margin-top: 5px;
+    border-top-left-radius : 15px;
+    border-top-right-radius: 15px;
+    font-size: 15%;
+  }
   }
