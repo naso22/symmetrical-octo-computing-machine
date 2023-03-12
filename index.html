@@ -1,215 +1,352 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="stylesheet" type="text/css" href="reset.css">
-    <link rel="stylesheet" type="text/css" href="modal.css">
-
     <title>Document</title>
+    <style>
+        body{
+    margin: 0px;
+    padding: 0px;
+    
+}
+
+li{
+    list-style:none;
+  }
+  /* baseに記述 */
+  a{
+    text-decoration: none;
+    color:#fff;
+  }
+html{
+  position: fixed;
+  left: 0;
+  right: 0;
+}
+.flex-center{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+
+}
+
+.header {
+  background-color: #202020;
+  color: rgba(255, 208, 0, 0.993);
+  letter-spacing: 3px;
+  margin-top: 10px;
+  border-top-left-radius: 35px;
+  border-top-right-radius: 35px;
+  height: 80px;
+  bottom: 0;
+  align-items: center;
+}
+
+.header-title {
+  font-size: 20px;
+  
+
+}
+
+.wroper {
+  background-color: rgb(255, 208, 0);
+}
+
+.fv {
+  height: 66vh;
+  flex-direction: column;
+  font-size: 100px;
+  font-weight: bold;
+
+}
+
+.fv-topic {
+  font-size: 100px;
+  font-weight: bold;
+
+}
+
+.btn {
+  height: 21.5vh;
+
+}
+
+.btn-item {
+  background-color: #fff100;
+  border-bottom: 5px solid #6969692c;
+  width: 200px;
+  height: 50px;
+  font-weight: bold;
+  margin: 20px;
+  -webkit-box-shadow: 0 5px 0 #e6d900;
+  box-shadow: 0 5px 0 #e6d900;
+  align-items: center;
+
+
+}
+
+
+.btn-item:hover {
+  -webkit-transform: translate(0, 5px);
+  transform: translate(0, 5px);
+  -webkit-box-shadow: 0 2px 0 #e6d900;
+  box-shadow: 0 10px 0 #e6d900;
+}
+
+@media screen and (max-width:553px) {
+
+  /* ----------------------- */
+  /* base_sp
+    /* ----------------------- */
+  .fv {
+    font-size: 50px;
+  }
+
+  .btn-item {
+    margin: 10px;
+  }
+
+  .header {
+    letter-spacing: 3px;
+    margin-top: 5px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+
+
+}
+
+.modal {
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  background-color: rgba(0,0,0,.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s ease;
+
+}
+
+
+
+
+.modal-content{
+  background: #ececec;
+  padding: 10px;
+}
+
+.modal-topic{
+  font-weight: bold;
+  height: 40vh;
+  overflow-y: scroll;
+  padding: 10px;
+}
+
+
+.modal-close{
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: -40px;
+  right: -40px;
+  width: 40px;
+  height: 40px;
+  font-size: 40px;
+  color: #242424;
+  cursor: pointer;
+
+}
+.modal-body{
+  position: relative;
+  max-width: 600px;
+  width: 80%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
+  transition: all 0.3s ease;
+
+}
+
+.add_area{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+input{
+  width:80%;
+}
+
+.add_button{
+  width: 20%;
+  height: 30px;
+}
+
+
+.command{
+
+  cursor: pointer;
+  color: crimson;
+}
+
+li{
+  display: flex;
+  justify-content:space-between
+}
+
+.modal-enter-from {
+  opacity: 0;
+}
+
+.modal-leave-to {
+  opacity: 0;
+}
+
+.modal-enter-from .modal-body,
+.modal-leave-to .modal-body {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+    </style>
 </head>
+
 <body>
-    <div class="wroper">
-        <!--羽を入れる-->
-        <div class="modal-container">
-            <div class="modal-body">
-              <div class="modal-close">×</div>
-              <div class="modal-content">
-                <p id="list"></p>
-                <div class="add_area">
-                <input type="text" id="add_form" placeholder="話題">
-                <button class="add_button" value="追加" onclick="clickBtn1()">追加</button>  
+    <div id="app">
+        <div class="wroper">
+            <!--お題追加モーダル-->
+            <div class="fv flex-center">
+                {{wadai[random]}}
             </div>
-            </div>
-            </div>
-          </div>
-        <div class="fv">
-                <p class="odai"><span id="wadai0"></span></p>
-        </div>
-        <div class="btn">
-            <div class="btn-list">
-                <button class="btn-item" id="start">回す</button>
-                <button class="btn-item" id="stop0">止める</button>
-                <button class="btn-item" id="wadaiTE">話題を追加</button>
+            <br>
+            <div class="btn">
+                <div class="btn-list flex-center">
+                    <button v-on:click="runSlot()" class="btn-item" id="start">回す</button>
+                    <button v-on:click="stopSlot()" class="btn-item" id="stop0">止める</button>
+                    <button class="btn-item" @click="modalOpen = true">話題を追加</button>
+                    <teleport to="body">
+                        <transition name="modal">
+                        <div v-if="modalOpen" class="modal">
+                            <div class="modal-body">
+                                <div class="modal-close" @click="modalOpen = false">×</div>
+                                <div class="modal-content">
+                                    <div class="modal-topic">
+                                        <ul v-if="wadai.length" v-for="wadai_item in wadai" :key="wadai_item">
+                                            <li><span>{{wadai_item}}</span><span @click="deleteItem(index)"
+                                                    class="command">[☓]</span></li>
+                                        </ul>
+                                        <ul v-else>
+                                            <li class="flex-center">なにもありません、、、</li>
+                                        </ul>
+                                    </div>
+                                    <div class="add_area">
+                                        <input type="text" id="add_form" v-model="add" placeholder="話題">
+                                        <button class="add_button" value="追加" @click="clickBtn1()">追加</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </teleport>
+                </transition>
+                </div>
             </div>
         </div>
     </div>
-
-    <header class="header">
-        <h1 class="site-title">Random topic machine</h1>
+    </div>
+    <header class="header flex-center">
+        <h1 class="header-title">Random topic machine</h1>
     </header>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.3.2/dist/confetti.browser.min.js"></script>
 
     <script>
         
-//ロール
-var timers,
-    nums,
-    stopCount,
-    flag = 0;
 
-const wadai0 = document.getElementById('wadai0');
-
-
-const wadai = [
-    '好きな食べ物の話',
-    '地元や出身地の話',
-    '可愛い動物の動画',
-    '天気の話',
-    '黒歴史',
-    'テレビやドラマの話',
-    '共通の友達の話',
-    'スーパーマリオゲーム',
-    '初恋のお話',
-    '最近面白かった話',
-    'お互いの第一印象の話',
-    '学生時代や幼少期の話',
-    '「もしも〇〇だったら」の話',
-    'ウンコ味のカレーVSカレー味のウンコ',
-    'Wordウルフ',
-    '人狼ゲーム',
-
-
-];
-
-
-
-
-
-//ストップ押したとき
-
-document.getElementById('stop0').onclick = function () {
-    var end = Date.now() + (900);
-
-    // go Buckeyes!
-    var colors = ['#bb0000', '#ffffff'];
-
-    (function frame() {
-        confetti({
-            particleCount: 2,
-            angle: 50,
-            spread: 30,
-            origin: { x: 0 },
-            colors: colors
-        });
-        confetti({
-            particleCount: 2,
-            angle: 120,
-            spread: 30,
-            origin: { x: 1 },
-            colors: colors
-        });
-
-        if (Date.now() < end) {
-            requestAnimationFrame(frame);
+const appdata = {
+    data() {
+        return {
+            random: 0,
+            timers: 0,
+            modalOpen: false,
+            wadai: [
+                '好きな食べ物の話',
+                '地元や出身地の話',
+                '可愛い動物の動画',
+                '天気の話',
+                '黒歴史',
+                'テレビやドラマの話',
+                '共通の友達の話',
+                'スーパーマリオゲーム',
+                '初恋のお話',
+                '最近面白かった話',
+                'お互いの第一印象の話',
+                '学生時代や幼少期の話',
+                '「もしも〇〇だったら」の話',
+                'ウンコ味のカレーVSカレー味のウンコ',
+                'Wordウルフ',
+                '人狼ゲーム',
+            ],
         }
-    }());
-    stopSlot(0);
+
+    },
+    methods: {
+        stopSlot: function () {
+            var end = Date.now() + (900);
+            // go Buckeyes!
+            var colors = ['#bb0000', '#ffffff'];
+
+            (function frame() {
+                confetti({
+                    particleCount: 2,
+                    angle: 50,
+                    spread: 30,
+                    origin: { x: 0 },
+                    colors: colors
+                });
+                confetti({
+                    particleCount: 2,
+                    angle: 120,
+                    spread: 30,
+                    origin: { x: 1 },
+                    colors: colors
+                });
+
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            }());
+
+            clearTimeout(this.timers);
+        },
 
 
-};
+        runSlot: function () {
+            this.random = Math.floor(Math.random() * this.wadai.length);
+            this.timers = setTimeout(() => { this.runSlot() }, 20,);
+        },
 
+        clickBtn1: function () {
+            if (this.add=="") {
+                return
+            }
+            this.wadai.push( this.add );
+            this.add = '';
+          },
 
+        deleteItem: function(index){
+              this.wadai.splice(index, 1);
+            }
+    },
 
-//スタート押したとき
-document.getElementById('start').onclick = function () {
-
-    if (flag != 2) {
-        flag = 1;
-        startSlot();
-    }
-};
-
-function startSlot() {
-    timers = [];
-    nums = [];
-    stopCount = 0;
-
-    runSlot(0);
 }
-
-function stopSlot(n) {
-
-    if (typeof nums[n] !== 'undefined') {
-        return;
-    }
-    clearTimeout(timers[n]);
-    stopCount++;
-
-    if (stopCount == 3) {
-        checkSlot();
-    }
-}
-
-
-function checkSlot() {
-    nums.sort();
-    flag = 0;
-}
-
-function runSlot(n) {
-    wadai0.textContent = wadai[Math.floor(Math.random() * wadai.length)];
-    timers[n] = setTimeout(function () {
-        runSlot(n);
-    }, 30,);
-
-}
-        $(function(){
-    // 変数に要素を入れる
-    var open = $('#wadaiTE'),
-      close = $('.modal-close'),
-      container = $('.modal-container');
-  
-    //開くボタンをクリックしたらモーダルを表示する
-    open.on('click',function(){ 
-      container.addClass('active');        
-      return false;
-    });
-  
-    //閉じるボタンをクリックしたらモーダルを閉じる
-    close.on('click',function(){  
-      container.removeClass('active');
-    });
-  
-    //モーダルの外側をクリックしたらモーダルを閉じる
-    $(document).on('click',function(e) {
-      if(!$(e.target).closest('.modal-body').length) {
-        container.removeClass('active');
-      }
-    });
-  });
-
-  for (var i = 0; i < wadai.length; i++) { 
-    var todoList = document.createElement('li'); 
-    todoList.textContent = wadai[i];
-    document.getElementById('list').appendChild(todoList); 
-    }
-
-
-  function clickBtn1() {
-    var t1 = document.getElementById("add_form").value;
-    wadai.push(t1);
-    var todoList = document.createElement('li'); 
-    todoList.textContent = wadai[i];
-    document.getElementById('list').appendChild(todoList); 
-    reset()
-
-  }
-
-  function reset(){
-    var textForm = document.getElementById("add_form");
-  textForm.value = '';
-
-  }
+Vue.createApp(appdata).mount("#app")
 
     </script>
-    
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.3.2/dist/confetti.browser.min.js"></script>
-
-
 
 </body>
 
